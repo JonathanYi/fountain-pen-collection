@@ -4,6 +4,11 @@ class UserController < ApplicationController
   end
 
   post '/login' do
-    erb :"users/show"
+    @user = User.find_by(:params => params[:username])
+    if @user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect "/collections"
+    end
+    #erb :"/collections"
   end
 end
