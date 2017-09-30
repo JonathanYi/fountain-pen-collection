@@ -5,4 +5,9 @@ class CollectionController < ApplicationController
       erb :"collections/collections"
     end
   end
+
+  get '/collections/:slug' do
+    @collection = Collection.find_by_slug(params[:slug])
+    erb :"collections/show"
+  end
 end
