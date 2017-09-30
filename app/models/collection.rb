@@ -3,6 +3,6 @@ class Collection < ActiveRecord::Base
   has_many :pens
   has_many :inks, through: :pens
 
-  include Slugifiable::InstanceMethod
+  include Slugifiable::InstanceMethodName
   extend Slugifiable::ClassMethod
 end

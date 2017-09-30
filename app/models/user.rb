@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
   has_many :pens, through: :collections
   has_many :inks, through: :pens
 
-  include Slugifiable::InstanceMethod
+  include Slugifiable::InstanceMethodUsername
   extend Slugifiable::ClassMethod
 end
