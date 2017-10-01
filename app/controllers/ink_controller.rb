@@ -1,0 +1,2 @@
+class InkController < ApplicationController
+end
