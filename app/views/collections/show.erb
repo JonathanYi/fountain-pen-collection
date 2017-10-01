@@ -1,4 +1,4 @@
 <h1><%= @collection.name %></h1>
 <%@collection.pens.each do |pen|%>
-<%= pen.name %>
+<a href="/pens/<%= pen.slug %>"><%= pen.name %></a>
 <% end %>
