@@ -1,5 +1,6 @@
-<h1>Welcome <%= current_user.username %></h1>
-<h2>Collections</h2>
+<h2><%= current_user.username %>'s Collections</h2>
 <% current_user.collections.each do |collection| %>
-  <a href="collections/<%= collection.slug %>"><%= collection.name %></a>
+  <%= collection.id %>.<a href="collections/<%= collection.slug %>"><%= collection.name %></a>
 <% end %>
+<br></br>
+<a href="/collections/new">Create New Colleciton</a>
