@@ -6,11 +6,14 @@
   </head>
   <body>
     <h1>Fount Pen Collection</h1>
-    <div>
-      <a href="/collections">Collecitons</a>
-      <a href="/pens">Pens</a>
-      <a href="/inks">Inks</a>
-    </div>
+    <% if logged_in? %>
+      <div>
+        <a href="/collections">Collecitons</a>
+        <a href="/pens">Pens</a>
+        <a href="/inks">Inks</a>
+        <a href="/logout">Log Out</a>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
