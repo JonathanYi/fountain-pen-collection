@@ -31,15 +31,21 @@ class UserController < ApplicationController
 
   post '/login' do
     @user = User.find_by(username: params[:username])
-    #username or password was blank
     if params[:username] == "" || params[:password] == ""
+      flash[:message] = "Please fill out both username and password."
       redirect "/login"
     elsif @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      erb :"/users/show"
+      redirect :"/users/show"
     else
-      #username and/or oassword invalid
+      flash[:message] = "Username and/or password invalid."
+      redirect "/login"
     end
+  end
+
+  #added this becausae the url was not updating and showed login.
+  get '/users/show' do
+    erb :"/users/show"
   end
 
   get '/logout' do
