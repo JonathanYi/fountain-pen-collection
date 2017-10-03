@@ -1,6 +1,6 @@
 <h2>Collections</h2>
 <% current_user.collections.each do |collection| %>
-  <%= collection.id %>.<a href="collections/<%= collection.slug %>"><%= collection.name %></a>
+  <ul><a href="collections/<%= collection.slug %>"><%= collection.name %></a></ul>
 <% end %>
 <br></br>
 <a href="/collections/new">Create New Colleciton</a>

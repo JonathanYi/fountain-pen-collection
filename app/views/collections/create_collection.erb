@@ -2,6 +2,7 @@
 <form action="/collections" method="post">
   <input type="text" name="collection[name]">
   <br></br>
+  <p>Please note, adding a pen from a different collection will remove this pen from that collection.</p>
   <% @pens.each do |pen| %>
   <input type="checkbox" name="collection[pen_ids][]" value="<%= pen.id %>" id="<%= pen.id %>">
     <%= pen.name %>
