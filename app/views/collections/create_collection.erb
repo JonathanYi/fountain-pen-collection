@@ -1,6 +1,12 @@
 <h2>Create New Collection</h2>
 <form action="/collections" method="post">
-  <input type="text" name="name">
+  <input type="text" name="collection[name]">
+  <br></br>
+  <% @pens.each do |pen| %>
+  <input type="checkbox" name="owner[pen_ids][]" value="<%= pen.id %>" id="<%= pen.id %>">
+    <%= pen.name %>
+  </input>
+  <% end %>
   <br></br>
   <input type="submit" value="Submit">
 </form>

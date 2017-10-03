@@ -12,6 +12,7 @@ class CollectionController < ApplicationController
 
   get '/collections/new' do
     if logged_in?
+      @pens = Pen.all
       erb :"collections/create_collection"
     else
       redirect "/login"
