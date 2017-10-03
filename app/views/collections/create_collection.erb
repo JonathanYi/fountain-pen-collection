@@ -3,7 +3,7 @@
   <input type="text" name="collection[name]">
   <br></br>
   <% @pens.each do |pen| %>
-  <input type="checkbox" name="owner[pen_ids][]" value="<%= pen.id %>" id="<%= pen.id %>">
+  <input type="checkbox" name="collection[pen_ids][]" value="<%= pen.id %>" id="<%= pen.id %>">
     <%= pen.name %>
   </input>
   <% end %>

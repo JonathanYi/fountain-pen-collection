@@ -7,7 +7,12 @@ class CollectionController < ApplicationController
   end
 
   post '/collections' do
-
+    @collection = Collection.create(params[:collection])
+    #i thought this would have populated during save but it doens't?
+    #better to do this in the route or on the page?
+    @collection.user = current_user
+    @collection.save
+    redirect "/collections/#{@collection.slug}"
   end
 
   get '/collections/new' do
