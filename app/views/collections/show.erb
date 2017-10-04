@@ -15,3 +15,8 @@
   <br></br>
   <input type="submit" name="" value="Submit">
 </form>
+<p>To Delete this Collection:</p>
+<form action="/collections/<%= @collection.slug %>/delete" method="post">
+  <input type="hidden" id="hidden" name="_method" value="DELETE">
+  <input type="submit" name="" value="Delete Collection">
+</form>

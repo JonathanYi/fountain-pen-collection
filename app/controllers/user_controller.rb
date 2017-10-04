@@ -45,7 +45,11 @@ class UserController < ApplicationController
 
   #added this becausae the url was not updating and showed login.
   get '/users/show' do
-    erb :"/users/show"
+    if logged_in?
+      erb :"/users/show"
+    else
+      redirect "/login"
+    end
   end
 
   get '/logout' do

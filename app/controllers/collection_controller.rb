@@ -12,7 +12,7 @@ class CollectionController < ApplicationController
     #i thought this would have populated during save but it doens't?
     #better to do this in the route or on the page?
     @collection.user = current_user
-    @collection.pen_ids = params[:collection][:pen__ids]
+    @collection.pen_ids = params[:collection][:pen_ids]
     @collection.save
     redirect "/collections/#{@collection.slug}"
   end
@@ -38,5 +38,19 @@ class CollectionController < ApplicationController
     @collection.pen_ids = params[:pens]
     @collection.save
     redirect "/collections/#{@collection.slug}"
+  end
+
+  delete '/collections/:slug/delete' do
+    if logged_in?
+      @collection = Collection.find_by_slug(params[:slug])
+      if @collection.user_id = current_user.id
+        @collection.delete
+        redirect "/collections"
+      else
+        redirect to "/collections"
+      end
+    else
+      redirect "/login"
+    end
   end
 end
