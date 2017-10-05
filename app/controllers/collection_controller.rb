@@ -1,8 +1,13 @@
+require 'rack-flash'
 class CollectionController < ApplicationController
+  use Rack::Flash
+
   get '/collections' do
     if logged_in?
       @collections = current_user.collections
       erb :"collections/collections"
+    else
+      redirect "/login"
     end
   end
 
@@ -19,7 +24,7 @@ class CollectionController < ApplicationController
 
   get '/collections/new' do
     if logged_in?
-      @pens = Pen.all
+      @pens = Pen.user_id
       erb :"collections/create_collection"
     else
       redirect "/login"
@@ -27,9 +32,18 @@ class CollectionController < ApplicationController
   end
 
   get '/collections/:slug' do
-    @collection = Collection.find_by_slug(params[:slug])
-    @pens = Pen.all
-    erb :"collections/show"
+    if logged_in?
+      @collection = Collection.find_by_slug(params[:slug])
+      @pens = Pen.all
+      if current_user.collections.include?(@collection)
+        erb :"collections/show"
+      else
+        flash[:message] = "Collection, #{@collection.name},  was not found."
+        redirect "/collections"
+      end
+    else
+      redirect "/login"
+    end
   end
 
   patch '/collections/:slug' do

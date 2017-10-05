@@ -1,3 +1,6 @@
+<% if flash.has?(:message) %>
+  <p><%= flash[:message] %></p>
+<% end %>
 <h2>Collections</h2>
 <% current_user.collections.each do |collection| %>
   <ul><a href="collections/<%= collection.slug %>"><%= collection.name %></a></ul>
