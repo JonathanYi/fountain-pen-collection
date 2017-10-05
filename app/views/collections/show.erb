@@ -2,7 +2,7 @@
 <%@collection.pens.each do |pen|%>
 <ul><a href="/pens/<%= pen.slug %>"><%= pen.name %></a></ul>
 <% end %>
-<br></br>
+<br/>
 <p>To add/remove pens to this collection, select below and hit submit.</p>
 <p>Pens added here will belong to this collection and will be removed from any other collections.</p>
 <form action="/collections/<%= @collection.slug %>" method="post">
