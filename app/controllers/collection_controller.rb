@@ -11,23 +11,28 @@ class CollectionController < ApplicationController
     end
   end
 
-  post '/collections' do
-    #binding.pry
-    @collection = Collection.find_or_create_by(name: params[:collection][:name])
-    #i thought this would have populated during save but it doens't?
-    #better to do this in the route or on the page?
-    @collection.user = current_user
-    @collection.pen_ids = params[:collection][:pen_ids]
-    @collection.save
-    redirect "/collections/#{@collection.slug}"
-  end
-
   get '/collections/new' do
     if logged_in?
       @pens = Pen.all
       erb :"collections/create_collection"
     else
       redirect "/login"
+    end
+  end
+
+  post '/collections' do
+    #binding.pry
+    if params[:collection][:name] == ""
+      flash[:message] = "Collection name cannot be blank."
+      redirect "/collections/new"
+    else
+      @collection = Collection.find_or_create_by(name: params[:collection][:name])
+      #i thought this would have populated during save but it doens't?
+      #better to do this in the route or on the page?
+      @collection.user = current_user
+      @collection.pen_ids = params[:collection][:pen_ids]
+      @collection.save
+      redirect "/collections/#{@collection.slug}"
     end
   end
 
