@@ -24,7 +24,7 @@ class CollectionController < ApplicationController
 
   get '/collections/new' do
     if logged_in?
-      @pens = Pen.user_id
+      @pens = Pen.all
       erb :"collections/create_collection"
     else
       redirect "/login"
@@ -35,10 +35,10 @@ class CollectionController < ApplicationController
     if logged_in?
       @collection = Collection.find_by_slug(params[:slug])
       @pens = Pen.all
-      if current_user.collections.include?(@collection)
+      if !!@collection & current_user.collections.include?(@collection)
         erb :"collections/show"
       else
-        flash[:message] = "Collection, #{@collection.name},  was not found."
+        flash[:message] = "Collection #{params[:slug]} was not found."
         redirect "/collections"
       end
     else
