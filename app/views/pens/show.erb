@@ -1,11 +1,11 @@
 <h1>Name: <%= @pen.name %></h1>
 <h2>Brand: <%= @pen.brand %></h2>
-<h2>Current Ink: <%= @pen.ink.name %></h2>
+<h2>Current Ink: <%= @current_ink %></h2>
 <p>To add/change ink in this pen, select below and hit submit.</p>
 <form action="/pens/<%= @pen.slug %>" method="post">
   <input type="hidden" id="hidden" name="_method" value="patch">
   <% @inks.each do |ink| %>
-  <input type="radio" name="inks[]" id="<%= ink.name %>" value="<%= ink.id %>" <%= 'checked' if @pen.ink == ink %>>
+  <input type="radio" name="ink" id="<%= ink.name %>" value="<%= ink.id %>" <%= 'checked' if @pen.ink == ink %>>
     <%= ink.name %>
   </input>
   <% end %>
