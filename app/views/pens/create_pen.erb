@@ -1,0 +1,18 @@
+<h2>Create New Pen</h2>
+<form action="/pens" method="post">
+  <% if flash.has?(:message) %>
+    <p><%= flash[:message] %></p>
+  <% end %>
+  Name: <input type="text" name="name">
+  <br></br>
+  Brand: <input type="text" name="brand">
+  <br></br>
+  <p>Please select an ink for this pen.</p>
+  <% @inks.each do |ink| %>
+  <input type="radio" name="ink" value="<%= ink.id %>" id="<%= ink.id %>">
+    <%= ink.name %>
+  </input>
+  <% end %>
+  <br></br>
+  <input type="submit" value="Submit">
+</form>

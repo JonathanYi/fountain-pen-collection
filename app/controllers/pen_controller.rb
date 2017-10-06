@@ -11,6 +11,15 @@ class PenController < ApplicationController
     end
   end
 
+  get '/pens/new' do
+    if logged_in?
+      @inks = Ink.all
+      erb :"pens/create_pen"
+    else
+      redirect "/login"
+    end
+  end
+
   get '/pens/:slug' do
     if logged_in?
       @pen = Pen.find_by_slug(params[:slug])
