@@ -43,7 +43,7 @@ class UserController < ApplicationController
     end
   end
 
-  #added this becausae the url was not updating and showed login.
+  #added this becausae the url was not updating and showed /login.
   get '/users/show' do
     if logged_in?
       erb :"/users/show"

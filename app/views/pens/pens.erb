@@ -3,7 +3,10 @@
 <% end %>
 <h2>Pens</h2>
 <% current_user.pens.each do |pen| %>
-  <ul><a href="pens/<%= pen.slug %>"><%= pen.name %></a></ul>
+  <ul>
+    <a href="pens/<%= pen.slug %>"><%= pen.name %></a>
+    Ink: <%if !!pen.ink%> <%= pen.ink.name %> <%end%>
+  </ul>
 <% end %>
 <br/>
 <a href="/pens/new">Create New Pen</a>
