@@ -48,4 +48,18 @@ class InkController < ApplicationController
         redirect "/login"
       end
     end
+
+    delete '/inks/:slug/delete' do
+      if logged_in?
+        @ink = Ink.find_by_slug(params[:slug])
+        if @ink.user_id = current_user.id
+          @ink.delete
+          redirect "/inks"
+        else
+          redirect to "/inks"
+        end
+      else
+        redirect "/login"
+      end
+    end
 end
