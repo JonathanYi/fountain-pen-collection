@@ -13,7 +13,8 @@ class PenController < ApplicationController
 
   get '/pens/new' do
     if logged_in?
-      @inks = Ink.all
+      @inks = current_user.inks
+      @collections = current_user.collections
       erb :"pens/create_pen"
     else
       redirect "/login"
@@ -40,6 +41,7 @@ class PenController < ApplicationController
     if logged_in?
       @pen = Pen.find_by_slug(params[:slug])
       @inks = Ink.all
+      @collections = current_user.collections
       if @pen.ink == nil
         @current_ink = "No Ink"
       else
@@ -59,7 +61,12 @@ class PenController < ApplicationController
   patch '/pens/:slug' do
     #binding.pry
     @pen = Pen.find_by_slug(params[:slug])
-    @pen.ink = Ink.find(params[:ink])
+    if !!params[:ink]
+      @pen.ink = Ink.find(params[:ink])
+    end
+    if !!params[:collection]
+      @pen.collection_id = params[:collection]
+    end
     @pen.save
     redirect "/pens/#{@pen.slug}"
   end

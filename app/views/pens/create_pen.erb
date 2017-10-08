@@ -9,7 +9,7 @@
   <br></br>
   <p>Please select an ink for this pen.</p>
   <% @inks.each do |ink| %>
-  <input type="radio" name="ink" value="<%= ink.id %>" id="<%= ink.id %>">
+  <input type="radio" name="ink_id" value="<%= ink.id %>" id="<%= ink.id %>">
     <%= ink.name %>
   </input>
   <% end %>

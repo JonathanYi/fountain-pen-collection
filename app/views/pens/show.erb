@@ -1,17 +1,26 @@
 <h1>Name: <%= @pen.name %></h1>
 <h2>Brand: <%= @pen.brand %></h2>
 <h2>Current Ink: <%= @current_ink %></h2>
-<p>To add/change ink in this pen, select below and hit submit.</p>
+
 <form action="/pens/<%= @pen.slug %>" method="post">
   <input type="hidden" id="hidden" name="_method" value="patch">
+  <p>To add/change ink in this pen, select below and hit submit.</p>
   <% @inks.each do |ink| %>
   <input type="radio" name="ink" id="<%= ink.name %>" value="<%= ink.id %>" <%= 'checked' if @pen.ink == ink %>>
     <%= ink.name %>
   </input>
   <% end %>
+
+  <p>To assign pen to a collection, please choose below:</p>
+  <% @collections.each do |collection| %>
+  <input type="radio" name="collection" id="<%= collection.name %>" value="<%= collection.id %>" <%= 'checked' if @pen.collection != nil && @pen.collection.id == collection.id %>>
+    <%= collection.name %>
+  </input>
+  <% end %>
   <br></br>
   <input type="submit" name="" value="Submit">
 </form>
+
 <p>To Delete this Pen:</p>
 <form action="/pens/<%= @pen.slug %>/delete" method="post">
   <input type="hidden" id="hidden" name="_method" value="DELETE">
