@@ -13,6 +13,12 @@
     <%= ink.name %>
   </input>
   <% end %>
+  <p>To assign pen to a collection, please choose below:</p>
+  <% @collections.each do |collection| %>
+  <input type="radio" name="collection" id="<%= collection.name %>" value="<%= collection.id %>">
+    <%= collection.name %>
+  </input>
+  <% end %>
   <br></br>
   <input type="submit" value="Submit">
 </form>

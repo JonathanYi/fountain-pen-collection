@@ -28,10 +28,13 @@ class PenController < ApplicationController
       redirect "/pens/new"
     else
       @pen = Pen.create({name: params[:name], brand: params[:brand]})
-      #i thought this would have populated during save but it doens't?
-      #better to do this in the route or on the page?
-      #@pen.user = current_user
-      @pen.ink = Ink.find(params[:ink])
+      if !!params[:ink_id]
+        @pen.ink_id = Ink.find(params[:ink_id])
+      end
+      if !!params[:collection_id]
+        @pen.collection_id = params[:collection_id]
+      end
+      @pen.user_id = current_user.id
       @pen.save
       redirect "/pens/#{@pen.slug}"
     end
