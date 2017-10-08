@@ -1,0 +1,9 @@
+<h1>Ink details:</h1>
+<h2>Name: <%= @ink.name %></h2>
+<h2>Brand: <%= @ink.brand %></h2>
+
+<p>To Delete this Ink:</p>
+<form action="/inks/<%= @ink.slug %>/delete" method="post">
+  <input type="hidden" id="hidden" name="_method" value="DELETE">
+  <input type="submit" name="" value="Delete Ink">
+</form>
