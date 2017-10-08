@@ -1,0 +1,11 @@
+<% if flash.has?(:message) %>
+  <p><%= flash[:message] %></p>
+<% end %>
+<h2>Inks</h2>
+<% @inks.each do |ink| %>
+  <ul>
+    <a href="inks/<%= ink.slug %>"><%= ink.name %></a>
+  </ul>
+<% end %>
+<br/>
+<a href="/pens/new">Create New Ink</a>
