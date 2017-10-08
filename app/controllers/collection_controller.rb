@@ -39,7 +39,7 @@ class CollectionController < ApplicationController
   get '/collections/:slug' do
     if logged_in?
       @collection = Collection.find_by_slug(params[:slug])
-      @pens = Pen.all
+      @pens = current_user.pens
       if !!@collection & current_user.collections.include?(@collection)
         erb :"collections/show"
       else

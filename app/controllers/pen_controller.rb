@@ -43,7 +43,7 @@ class PenController < ApplicationController
   get '/pens/:slug' do
     if logged_in?
       @pen = Pen.find_by_slug(params[:slug])
-      @inks = Ink.all
+      @inks = current_user.inks
       @collections = current_user.collections
       if @pen.ink == nil
         @current_ink = "No Ink"
