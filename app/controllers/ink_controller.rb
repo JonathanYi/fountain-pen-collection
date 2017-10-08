@@ -37,7 +37,6 @@ class InkController < ApplicationController
     get '/inks/:slug' do
       if logged_in?
         @ink = Ink.find_by_slug(params[:slug])
-
         if !!@ink & current_user.inks.include?(@ink)
           erb :"inks/show"
         else
