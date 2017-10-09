@@ -1,9 +1,17 @@
-#Fountain Pen Collection
+# Fountain Pen Collection
 
-Allows you to create a collections of pens.
-A collection of pens will have many pens.
-Ink can be inked in many pens, but a pen can only be inked with 1 ink at a time.
+A simple CRUD application that implements active record and sinatra.
+Sqlite is used as the back end.
+Application supports user login and sessions as well.
 
-##Usage
+## Usage
 
-To use this app, clone this repository.
+To use this app, clone this repository and run bundle to get the needed gems.
+Run rake db:migrate to setup the database.
+Run Shotgun and then open browser to localhost:9393.
+
+
+## Contributors
+
+Jonathan Yi
+Daniel Park (https://github.com/dpark926) helped with debugging an issue with session.
