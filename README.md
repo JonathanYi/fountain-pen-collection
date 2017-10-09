@@ -13,5 +13,5 @@ Run Shotgun and then open browser to localhost:9393.
 
 ## Contributors
 
-Jonathan Yi
+Jonathan Yi,
 Daniel Park (https://github.com/dpark926) helped with debugging an issue with session.
